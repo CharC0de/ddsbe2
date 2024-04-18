@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserJob;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Response;
 use App\Models\User;
 
-class UserController extends Controller
+
+class User2Controller extends Controller
 {
     use ApiResponser;
     private $request;
@@ -37,14 +37,10 @@ class UserController extends Controller
         $users = User::all();
         return $this->successResponse($users);
     }
-    /**
-     * Add a new user
-     * @return \Illuminate\Http\JsonResponse
-     */
 
     public function add(Request $request)
     {
-        $userjob = UserJob::findOrFail($request->jobid);
+
         $this->validate($request, $this->rules);
         $user = User::create($request->all());
         return $this->successResponse($user, Response::HTTP_CREATED);
